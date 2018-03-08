@@ -31,7 +31,7 @@ public class StringQs {
      *          |S
      *
      * @param moves
-     * @returnZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+     * @return
      */
     public boolean isCircular(String moves){
         int x = 0, y = 0;
