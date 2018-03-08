@@ -11,7 +11,10 @@ public class StringQs {
         System.out.println(examples.isCircular("MRMRMRML"));
         System.out.println(examples.isCircular("MRMRMRMLM"));
         examples.permute(new char[]{'A','B','C'});
-        examples.permute(new char[]{'A','B','A'}); //
+        examples.permute(new char[]{'A','B','A'});
+        System.out.println("Is interleaved:"+ examples.isInterLeaved("ABCDE","AB","CD"));
+        System.out.println("Is interleaved:"+ examples.isInterLeaved("ABCD","AB","CD"));
+        examples.allInterLeaved("AB","CD", "");
     }
 
     /**
@@ -28,7 +31,7 @@ public class StringQs {
      *          |S
      *
      * @param moves
-     * @return
+     * @returnZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
      */
     public boolean isCircular(String moves){
         int x = 0, y = 0;
@@ -147,5 +150,34 @@ public class StringQs {
             }
         }
         while(counter < text.length) text[counter++] = ' ';
+    }
+
+
+    public boolean isInterLeaved(String S, String S1, String S2){
+        if(S.length() != S1.length() + S2.length()) return false;
+        int s1 =0, s2 =0;
+        for(char c : S.toCharArray()){
+             if(s1 < S1.length() && S1.charAt(s1) == c){
+                 s1++;
+             }else if(s2 < S2.length() && S2.charAt(s2) == c){
+                 s2++;
+             }else
+                 return false;
+        }
+        return true;
+    }
+
+
+    public void allInterLeaved(String S1, String S2, String S){
+        if(S1.length() == 0 && S2.length() == 0){
+            System.out.println(S);
+            return;
+        }
+        if(S1.length()!=0){
+            allInterLeaved(S1.substring(1), S2, S + S1.charAt(0));
+        }
+        if(S2.length()!=0){
+            allInterLeaved(S1, S2.substring(1), S + S2.charAt(0));
+        }
     }
 }
