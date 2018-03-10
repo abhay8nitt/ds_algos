@@ -23,7 +23,7 @@ public class Fibonacci {
      * @param num
      * @return
      */
-    public static double fib_memo(double num){
+    public double fib_memo(double num){
         return fib_memo(num, new HashMap<>());
     }
 
@@ -33,7 +33,7 @@ public class Fibonacci {
      * @param memo
      * @return
      */
-    private static double fib_memo(double num, Map<Double, Double> memo){
+    private double fib_memo(double num, Map<Double, Double> memo){
         if(memo.get(num)!= null) return memo.get(num);
         if(num == 0 || num == 1){
             memo.put(num,num);
@@ -48,7 +48,7 @@ public class Fibonacci {
      * @param num
      * @return
      */
-    public static double fib_tabulated(double num){
+    public double fib_tabulated(double num){
         if (num < 0) return 0;
         double dp[] = new double[(int)num+1];
         dp[0] = 0;
