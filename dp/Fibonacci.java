@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Fibonacci {
-    
+
     /**
      * Naive algorithm for fibonacci
      * @param num
@@ -26,7 +26,7 @@ public class Fibonacci {
     public static double fib_memo(double num){
         return fib_memo(num, new HashMap<>());
     }
-    
+
     /**
      * Memoization
      * @param num
@@ -41,5 +41,22 @@ public class Fibonacci {
             memo.put(num, fib_memo(num-1, memo) + fib_memo(num-2, memo));
         }
         return memo.get(num);
+    }
+
+    /**
+     * Tabulated version of the fibonacci series
+     * @param num
+     * @return
+     */
+    public static double fib_tabulated(double num){
+        if (num < 0) return 0;
+        double dp[] = new double[(int)num+1];
+        dp[0] = 0;
+        dp[1] = 1;
+
+        for(int i = 2;i < num+1;i++){
+            dp[i] = dp[i-1] +dp[i-2];
+        }
+        return dp[(int) num];
     }
 }
