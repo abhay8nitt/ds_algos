@@ -1,4 +1,5 @@
-**Dynamic Programming**
+# Dynamic Programming 
+```
     . Dynamic programming is when you use past knowledge to making solve a future problem easier.
     . Dynamic programming is very similar to recursion. But when subproblems are solved for multiple times,
       dynamic programming utilizes memorization techniques (usually a memory table) to store results of subproblems
@@ -14,9 +15,9 @@
       shortest path but not the longest path problem
     .   f(1) = f(2) = 1
         f(N) = f(N-1) + f(N-2) for N > 2
+```
 
-
-    . Memoization (Top down - build when needed)-
+### Memoization (Top down - build when needed)
 
       int fib(int n)
         {
@@ -29,7 +30,7 @@
           }
           return memo[n];
         }
-    . Tabulation (Bottom Up - first build and then use, this doesn't involve recursion)
+### Tabulation (Bottom Up - first build and then use, this doesn't involve recursion)
       int fib(int n)
         {
           int table[] = new int[n+1];
