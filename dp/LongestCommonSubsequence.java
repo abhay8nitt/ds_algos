@@ -32,14 +32,11 @@ public class LongestCommonSubsequence {
 
     private int[][] lcs_dp(char[] X, char[] Y, int M, int N) {
         int table[][] = new int[M + 1][N + 1];
-        for(int i = 0;i < M;i++){
-            for(int j=0;j < N;j++){
-                if(i == 0 || j ==0)
-                    table[i][j] = 0;
+        for(int i = 1;i <= M;i++){
+            for(int j = 1;j <= N;j++){
+               if(X[i-1] == Y[j-1]) table[i][j] = table[i-1][j-1] + 1;
                 else
-                    if(X[i] == Y[j]) table[i][j] = 1 + table[i-1][j-1];
-                else
-                    table[i][j] = Math.max(table[i-1][j], table[i][j-1]);
+                    table[i][j] = Integer.max(table[i-1][j], table[i][j-1]);
             }
         }
         return table;
@@ -74,7 +71,7 @@ public class LongestCommonSubsequence {
 
     private void print_lcs_table(int M, int N, char[] charX, char[] charY, int[][] lcs) {
         System.out.print(" ");
-        for(int k = 0;k <= charX.length;k++) {
+        for(int k = 0;k < charY.length;k++) {
             System.out.print("  " +charY[k]);
         }
         System.out.println();
