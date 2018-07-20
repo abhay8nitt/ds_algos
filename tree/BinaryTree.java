@@ -110,7 +110,7 @@ class  BinaryTree {
             TreeNode temp = q.remove();
             current--;
             if(temp!=null){
-                builder.append(temp.data+" ");
+                builder.append(temp.data).append(" ");
                 if(temp.left!=null){
                     next++;
                     q.add(temp.left);
@@ -581,6 +581,64 @@ class  BinaryTree {
         }
         return -1;
     }
+    public boolean isHeightBalanced(){
+        return isHeightBalanced(root, new Height());
+    }
+    private boolean isHeightBalanced(TreeNode root, Height height){
+        if (root == null){
+            height.height = 0;
+            return true;
+        }
 
+        Height lheight = new Height(), rheight = new Height();
+        boolean l = isHeightBalanced(root.left, lheight);
+        boolean r = isHeightBalanced(root.right, rheight);
+        int lh = lheight.height, rh = rheight.height;
+
+        height.height = (lh > rh? lh: rh) + 1;
+
+        if ((lh - rh >= 2) || (rh - lh >= 2))
+            return false;
+        else return l && r;
+    }
+
+    class Height{
+        int height =0;
+    }
+
+    public void zigZagTraversal(){
+        if(root == null) return;
+        Stack<TreeNode> curr, next;
+        curr = new Stack<>();
+        next = new Stack<>();
+        boolean left2Right = true;
+        curr.push(root);
+        while (!curr.empty()){
+            TreeNode node = curr.pop();
+            System.out.print(node.data+ " ");
+            if(left2Right){
+                if(node.left!=null){
+                    next.push(node.left);
+                }
+                if(node.right!=null){
+                    next.push(node.right);
+                }
+            }else{
+                if(node.right!=null){
+                    next.push(node.right);
+                }
+                if(node.left!=null){
+                    next.push(node.left);
+                }
+            }
+            if(curr.empty()){
+                curr .addAll(next);
+                next.clear();
+                left2Right = !left2Right;
+                System.out.println(" ");
+            }
+        }
+        System.out.println();
+    }
 }
 
